@@ -1,4 +1,6 @@
-import { createDrawerNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator, createSwitchNavigator } from "react-navigation";
+import React, { Component } from 'react';
+import { Image } from 'react-native';
+import { createDrawerNavigator, createBottomTabNavigator, createm, createAppContainer, createStackNavigator, createSwitchNavigator } from "react-navigation";
 import * as Routes from '../screens/index'
 
 const AuthNavigator = createStackNavigator({
@@ -22,18 +24,74 @@ const AuthNavigator = createStackNavigator({
     }
 });
 
-const TabNavigator = createMaterialTopTabNavigator({
-    Ads: {
-        screen: Routes.Ads,
+const MessageNavigator = createStackNavigator({
+    Messages: {
+        screen: Routes.Messages,
     },
-    'Post Ads': {
-        screen: Routes.PostAds,
+    CreateMessages: {
+        screen: Routes.CreateMessages,
     }
-})
+});
+
+const BottomTabNavigator = createBottomTabNavigator({
+    Home: {
+        screen: Routes.Home,
+        navigationOptions: {
+            title: '',
+            tabBarLabels: '',
+            tabBarIcon: ({ focused }) => (
+                <Image source={focused ? require('../assets/images/home-selected-24x24.png') : require('../assets/images/home-24x24.png')} />
+            )
+        }
+    },
+    Messages: {
+        screen: MessageNavigator,
+        navigationOptions: {
+            title: '',
+            tabBarLabels: '',
+            tabBarIcon: ({ focused }) => (
+                <Image source={focused ? require('../assets/images/messages-selected-24x24.png') : require('../assets/images/messages-24x24.png')} />
+            )
+        }
+    },
+    AddStatus: {
+        screen: Routes.AddStatus,
+        navigationOptions: {
+            title: '',
+            tabBarLabels: '',
+            tabBarIcon: ({ focused }) => (
+                <Image source={require('../assets/images/add-status-50x50.png')} style={{ marginBottom: 15 }} />
+            )
+        }
+    },
+    FindFriends: {
+        screen: Routes.FindFriends,
+        navigationOptions: {
+            title: '',
+            tabBarLabels: '',
+            tabBarIcon: ({ focused }) => (
+                <Image source={focused ? require('../assets/images/find-friends-selected-24x24.png') : require('../assets/images/find-friends-24x24.png')} />
+            )
+        }
+    },
+    Settings: {
+        screen: Routes.Settings,
+        navigationOptions: {
+            title: '',
+            tabBarLabels: '',
+            tabBarIcon: ({ focused }) => (
+                <Image source={focused ? require('../assets/images/settings-selected-24x24.png') : require('../assets/images/settings-24x24.png')} />
+            )
+        }
+    },
+}, { tabBarOptions: { showLabel: false, }, })
 
 const AppNavigator = createStackNavigator({
-    Home: {
-        screen: TabNavigator
+    MainScreen: {
+        screen: BottomTabNavigator,
+        navigationOptions: {
+            header: null
+        }
     },
     // Home: {
     //     screen: Routes.Home
@@ -42,8 +100,6 @@ const AppNavigator = createStackNavigator({
         screen: Routes.Profile
     }
 })
-
-
 
 // const AppNavigator = createDrawerNavigator({
 //     Home: {
@@ -64,8 +120,5 @@ const MainNavigator = createSwitchNavigator({
         screen: AppNavigator
     }
 })
-
-
-
 
 export default createAppContainer(MainNavigator);

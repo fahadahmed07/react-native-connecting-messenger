@@ -79,7 +79,7 @@ export default class Register extends Component {
           </View>
           <TouchableOpacity
             style={styles.SignupBtn}
-            onPress={() => this.props.navigation.navigate('Home')}
+            onPress={() => this.props.navigation.navigate('MainScreen')}
           >
             <Text style={{ color: "#fff" }}>Sign up</Text>
           </TouchableOpacity>

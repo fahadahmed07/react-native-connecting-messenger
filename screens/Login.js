@@ -1,6 +1,6 @@
 import * as Font from 'expo-font';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 
 export default class Login extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ export default class Login extends Component {
           </View>
           <TouchableOpacity
             style={styles.LoginBtn}
-            onPress={() => this.props.navigation.navigate('Home')}
+            onPress={() => this.props.navigation.navigate('MainScreen')}
           >
             <Text style={{ color: "#fff" }}>Login</Text>
           </TouchableOpacity>
@@ -97,11 +97,16 @@ export default class Login extends Component {
             </TouchableOpacity>
 
           </View>
-        </View>) : (<View style={styles.container}><ActivityIndicator size="large" /></View>)
+        </View>) : (<View style={styles.container}><ActivityIndicator color="#007aff" size="large" /></View>)
     );
   }
 
 }
+
+// #6c757d Secondary
+// #007aff Sky Blue 
+// #f8f9fa Light
+// #39325c Dark purple
 
 const styles = StyleSheet.create({
   container: {
